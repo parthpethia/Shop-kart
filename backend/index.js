@@ -70,6 +70,13 @@ apiRouter.use("/wishlist", wishlistRoutes);
 apiRouter.use("/cart", cartRoutes);
 apiRouter.use("/orders", orderRoutes);
 
+const { createPaymentOrder, verifyPayment } = require("./controllers/order.controller");
+const { protect } = require("./middlewares/auth.middleware");
+
+// Direct endpoints for standard checkout integration
+apiRouter.post("/create-order", protect, createPaymentOrder);
+apiRouter.post("/verify-payment", protect, verifyPayment);
+
 apiRouter.get("/", (req, res) => {
   res.send("ShopKart API Service is running...");
 });

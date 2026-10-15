@@ -100,12 +100,12 @@ const Checkout = () => {
 
       // 3. Open Razorpay Checkout
       const options = {
-        key: data.key,
+        key: data.key || import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: data.amount,
-        currency: data.currency,
+        currency: data.currency || 'INR',
         name: 'ShopKart',
         description: 'ShopKart Order Payment',
-        order_id: data.razorpayOrderId,
+        order_id: data.order_id || data.razorpayOrderId,
 
         handler: async function (razorpayResponse) {
           // Payment succeeded on Razorpay side → verify on backend

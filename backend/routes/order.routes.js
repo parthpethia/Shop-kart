@@ -16,6 +16,7 @@ router.use(protect);
 
 // POST /orders/create-payment-order — Create pending order + Razorpay order
 router.post("/create-payment-order", createPaymentOrder);
+router.post("/create-order", createPaymentOrder);
 
 // POST /orders/verify-payment — Verify Razorpay signature & confirm order
 router.post("/verify-payment", verifyPayment);
