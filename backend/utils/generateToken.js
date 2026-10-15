@@ -5,10 +5,12 @@ const generateToken = (res, customerId) => {
     expiresIn: "1d",
   });
 
+  const isProduction = process.env.NODE_ENV === "production" || Boolean(process.env.RENDER);
+
   res.cookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
     maxAge: 24 * 60 * 60 * 1000,
   });
 
